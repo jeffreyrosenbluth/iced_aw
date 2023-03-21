@@ -247,6 +247,10 @@ where
         let picker_state: &mut State = state.state.downcast_mut();
 
         if !self.show_picker {
+            // Dirty Fix for changing color externally
+            let overlay_state = super::overlay::color_picker::State::new(self.color);
+            picker_state.overlay_state = overlay_state;
+            // End Dirty Fix
             return self
                 .underlay
                 .as_widget_mut()
